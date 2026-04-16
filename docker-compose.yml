@@ -1,23 +1,26 @@
 services:
   app-blue:
-    image: nginx:alpine
+    # OpenClaw sẽ thay IMAGE_TAG thành SHA hoặc tag bản build mới nhất
+    image: ${IMAGE_TAG:-ghcr.io/bruksama/uth_dtdm_demo:latest}
     container_name: app-blue
     restart: unless-stopped
+    environment:
+      - APP_COLOR=blue
+      - APP_VERSION=${IMAGE_TAG:-dev}
     expose:
       - "80"
-    volumes:
-      - ./app-content/blue/index.html:/usr/share/nginx/html/index.html:ro
     networks:
       - app_net
 
   app-green:
-    image: nginx:alpine
+    image: ${IMAGE_TAG:-ghcr.io/bruksama/uth_dtdm_demo:latest}
     container_name: app-green
     restart: unless-stopped
+    environment:
+      - APP_COLOR=green
+      - APP_VERSION=${IMAGE_TAG:-dev}
     expose:
       - "80"
-    volumes:
-      - ./app-content/green/index.html:/usr/share/nginx/html/index.html:ro
     networks:
       - app_net
 

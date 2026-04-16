@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Demo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: var(--bg-color, #1a1a1a);
+      color: #ffffff;
+      transition: background 0.5s ease;
+    }
+    .card {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.12);
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-radius: 14px;
+      padding: 32px 40px;
+      max-width: 540px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body id="body">
+  <div class="card">
+    <div class="badge" id="env-badge">DEPLOYMENT</div>
+    <h1>Version: <span id="version">__VERSION__</span></h1>
+    <p>Running on: <span id="color">__COLOR__</span> environment</p>
+  </div>
+
+  <script>
+    fetch('/config.json')
+      .then(r => r.json())
+      .then(config => {
+        document.getElementById('version').innerText = config.version || 'unknown';
+        const color = config.color || 'blue';
+        document.getElementById('color').innerText = color;
+        document.getElementById('env-badge').innerText = color;
+        
+        if (color === 'green') {
+          document.body.style.setProperty('--bg-color', '#1b5e20');
+        } else if (color === 'blue') {
+          document.body.style.setProperty('--bg-color', '#0d47a1');
+        }
+      })
+      .catch(e => console.error("Could not load config", e));
+  </script>
+</body>
+</html>
