@@ -1,7 +1,7 @@
 services:
   app-blue:
     # OpenClaw sẽ thay IMAGE_TAG thành SHA hoặc tag bản build mới nhất
-    image: ${IMAGE_TAG:-ghcr.io/bruksama/uth_dtdm_demo:latest}
+    image: ${IMAGE_TAG:-ghcr.io/bruksama/uth_dtdm_demo:760c9a8fc20c4e459238885ede20a0c494863ab9}
     container_name: app-blue
     restart: unless-stopped
     environment:
@@ -13,7 +13,7 @@ services:
       - app_net
 
   app-green:
-    image: ${IMAGE_TAG:-ghcr.io/bruksama/uth_dtdm_demo:latest}
+    image: ${IMAGE_TAG:-ghcr.io/bruksama/uth_dtdm_demo:760c9a8fc20c4e459238885ede20a0c494863ab9}
     container_name: app-green
     restart: unless-stopped
     environment:

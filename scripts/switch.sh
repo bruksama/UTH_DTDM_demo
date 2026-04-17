@@ -23,7 +23,7 @@ NGINX_CONF="./nginx/nginx.conf"
 
 echo "=== [1/4] Starting deployment to $TARGET_COLOR with image tag $IMAGE_TAG ==="
 # Export biến cho docker-compose đọc
-export IMAGE_TAG="$IMAGE_TAG"
+export IMAGE_TAG="ghcr.io/bruksama/uth_dtdm_demo:$IMAGE_TAG"
 
 # Chỉ khởi động/cập nhật container mục tiêu
 docker compose up -d --no-deps --build "$IDLE_CONTAINER"
