@@ -34,11 +34,6 @@
   </style>
 </head>
 <body id="body">
-  <div class="card">
-    <div class="badge" id="env-badge">DEPLOYMENT</div>
-    <h1>Version: <span id="version">__VERSION__</span></h1>
-    <p>Running on: <span id="color">__COLOR__</span> environment</p>
-  </div>
 
   <div class="card">
     <h1>This is the demo for source code modification</h1>
@@ -46,22 +41,5 @@
     <p>Signs: am i handsome?</p>
   </div>
 
-  <script>
-    fetch('/config.json')
-      .then(r => r.json())
-      .then(config => {
-        document.getElementById('version').innerText = config.version || 'unknown';
-        const color = config.color || 'blue';
-        document.getElementById('color').innerText = color;
-        document.getElementById('env-badge').innerText = color;
-        
-        if (color === 'green') {
-          document.body.style.setProperty('--bg-color', '#1b5e20');
-        } else if (color === 'blue') {
-          document.body.style.setProperty('--bg-color', '#0d47a1');
-        }
-      })
-      .catch(e => console.error("Could not load config", e));
-  </script>
 </body>
 </html>
